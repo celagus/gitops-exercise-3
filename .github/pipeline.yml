@@ -1,0 +1,100 @@
+name: Hello-world API Pipeline
+on: [push]
+env:
+  DDOJO_URL: http://a3bcdc16648e.ngrok.io
+jobs:
+  job1:
+    name: Lint checks and Unit tests
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 2
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Run unit tests
+      run: |
+        pytest hello_world/test/*
+  job2:
+    name: SAST Scan
+    needs: job1
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check celagus DDojo scripts
+        uses: actions/checkout@v2
+        with:
+          repository: celagus/defect-dojo
+          path: defect-dojo
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install bandit
+      - name: Run Bandit
+        run: |
+          /home/runner/.local/bin/bandit -x hello_world/test/u_test.py -r . -o bandit.out -f json || true
+      - name: Upload Bandit output to DefectDojo
+        run: |
+          python3 defect-dojo/import_scan.py -b $DDOJO_URL -k ${{secrets.DDOJO_TOKEN}} -f bandit.out -e 1 -t 'Bandit Scan'
+  job3:
+    name: IaC Scan
+    needs: job1
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ github.workspace }}
+    steps:
+          name: Scan IaC
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Run Terrascan
+        id: terrascan
+        uses: accurics/terrascan-action@v1
+        with:
+          iac_type: 'terraform'
+          iac_version: 'v14'
+          policy_type: 'aws'
+          only_warn: true
+          iac_dir: terraform/aws
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: terrascan.sarif
+  job4:
+    name: Build and Push Docker Image
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+    - name: Login to DockerHub
+      uses: docker/login-action@v1 
+      with:
+        username: ${{ secrets.DHUB_USER }}
+        password: ${{ secrets.DHUB_TOKEN }}
+    - name: Build and push
+      id: docker_build
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: celagus/hello-world:latest
+    - name: Image digest
+      run: echo ${{ steps.docker_build.outputs.digest }}

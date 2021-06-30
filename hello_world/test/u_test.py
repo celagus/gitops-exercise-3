@@ -1,5 +1,8 @@
-from hello_world.app.app import hello_world
+import os, sys
 
+p = os.path.abspath('.')
+sys.path.insert(1, p)
+from hello_world.app.app import hello_world
 
 def test_get_hello():
     response = hello_world()
