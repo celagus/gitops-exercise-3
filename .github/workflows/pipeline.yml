@@ -14,3 +14,25 @@ jobs:
       - name: Run unit tests
         run: |
           pytest hello_world/test/*
+  job2:
+    name: SAST Scan
+    needs: job1
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check celagus DDojo scripts
+        uses: actions/checkout@v2
+        with:
+          repository: celagus/defect-dojo
+          path: defect-dojo
+      - name: Install Bandit
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install bandit
+      - name: Run Bandit
+        run: |
+          /home/runner/.local/bin/bandit -x hello_world/test/u_test.py -r . -o bandit.out -f json
