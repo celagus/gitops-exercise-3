@@ -27,6 +27,8 @@ jobs:
   job2:
     name: SAST Scan
     needs: job1
+    env:
+      DDOJO_URL: http://a3bcdc16648e.ngrok.io
     runs-on: ubuntu-latest
     defaults:
       run:
