@@ -2,7 +2,7 @@ name: Hello-world API Pipeline
 on: [push]
 jobs:
   env:
-  DDOJO_URL: http://a3bcdc16648e.ngrok.io
+    DDOJO_URL: http://a3bcdc16648e.ngrok.io
   job1:
     name: Lint checks and Unit tests
     runs-on: ubuntu-latest
