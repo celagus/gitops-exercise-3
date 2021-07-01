@@ -1,0 +1,204 @@
+{
+  "results": {
+    "violations": [
+      {
+        "rule_name": "imageWithoutDigest",
+        "description": "Image without digest affects the integrity principle of image security",
+        "rule_id": "AC-K8-NS-PO-M-0133",
+        "severity": "MEDIUM",
+        "category": "Infrastructure Security",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "MemorylimitsCheck",
+        "description": "Memory Limits Not Set in config file.",
+        "rule_id": "AC-K8-OE-PK-M-0158",
+        "severity": "Medium",
+        "category": "Security Best Practices",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "CpuRequestsCheck",
+        "description": "CPU Request Not Set in config file.",
+        "rule_id": "AC-K8-OE-PK-M-0155",
+        "severity": "Medium",
+        "category": "Security Best Practices",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "imageWithLatestTag",
+        "description": "No tag or container image with :Latest tag makes difficult to rollback and track",
+        "rule_id": "AC-K8-OE-PO-L-0134",
+        "severity": "LOW",
+        "category": "Security Best Practices",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "containerResourcesNotDefined",
+        "description": "Container does not have resource limitations defined",
+        "rule_id": "accurics.kubernetes.IAM.107",
+        "severity": "MEDIUM",
+        "category": "Identity and Access Management",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "CpulimitsCheck",
+        "description": "CPU Limits Not Set in config file.",
+        "rule_id": "AC-K8-OE-PK-M-0156",
+        "severity": "Medium",
+        "category": "Security Best Practices",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "nodePort",
+        "description": "Nodeport service can expose the worker nodes as they have public interface",
+        "rule_id": "AC-K8-NS-SV-L-0132",
+        "severity": "LOW",
+        "category": "Infrastructure Security",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_service",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/svc.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "privilegeEscalationCheck",
+        "description": "Containers Should Not Run with AllowPrivilegeEscalation",
+        "rule_id": "AC-K8-CA-PO-H-0165",
+        "severity": "HIGH",
+        "category": "Compliance Validation",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "readOnlyFileSystem",
+        "description": "Container images with readOnlyRootFileSystem set as false mounts the container root file system with write permissions",
+        "rule_id": "AC-K8-IA-PO-M-0140",
+        "severity": "MEDIUM",
+        "category": "Identity and Access Management",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "secCompProfile",
+        "description": "Default seccomp profile not enabled will make the container to make non-essential system calls",
+        "rule_id": "AC-K8-IA-PO-M-0141",
+        "severity": "MEDIUM",
+        "category": "Identity and Access Management",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "runAsNonRootCheck",
+        "description": "Minimize Admission of Root Containers",
+        "rule_id": "AC-K8-IA-PO-H-0168",
+        "severity": "HIGH",
+        "category": "Identity and Access Management",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "nolivenessProbe",
+        "description": "No liveness probe will ensure there is no recovery in case of unexpected errors",
+        "rule_id": "AC-K8-OE-PO-L-0129",
+        "severity": "LOW",
+        "category": "Security Best Practices",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "MemoryRequestsCheck",
+        "description": "Memory Request Not Set in config file.",
+        "rule_id": "AC-K8-OE-PK-M-0157",
+        "severity": "Medium",
+        "category": "Security Best Practices",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "securityContextUsed",
+        "description": "Apply Security Context to Your Pods and Containers",
+        "rule_id": "AC-K8-NS-PO-M-0122",
+        "severity": "MEDIUM",
+        "category": "Infrastructure Security",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "noReadinessProbe",
+        "description": "No readiness probe will affect automatic recovery in case of unexpected errors",
+        "rule_id": "AC-K8-OE-PO-L-0130",
+        "severity": "LOW",
+        "category": "Security Best Practices",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "defaultNamespaceUsed2",
+        "description": "The default namespace should not be used",
+        "rule_id": "accurics.kubernetes.OPS.461",
+        "severity": "LOW",
+        "category": "Operational Efficiency",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      },
+      {
+        "rule_name": "appArmorProfile",
+        "description": "AppArmor profile not set to default or custom profile will make the container vulnerable to kernel level threats",
+        "rule_id": "AC-K8-IA-PO-M-0135",
+        "severity": "MEDIUM",
+        "category": "Identity and Access Management",
+        "resource_name": "hello-api",
+        "resource_type": "kubernetes_deployment",
+        "file": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s/deployment.yml",
+        "line": 1
+      }
+    ],
+    "skipped_violations": null,
+    "scan_summary": {
+      "file/folder": "/Users/celagus/GitDir/eko-hackademy-dso/gitops-exercise-3/K8s",
+      "iac_type": "k8s",
+      "scanned_at": "2021-07-01 00:25:12.880164 +0000 UTC",
+      "policies_validated": 561,
+      "violated_policies": 17,
+      "low": 5,
+      "medium": 10,
+      "high": 2
+    }
+  }
+}
