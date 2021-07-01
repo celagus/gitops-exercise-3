@@ -41,3 +41,23 @@ jobs:
       - name: Upload Bandit output to DefectDojo
         run: |
           python3 defect-dojo/import_scan.py -b $DDOJO_URL -k ${{secrets.DDOJO_TOKEN}} -f bandit.out -e 1 -t 'Bandit Scan'
+  job3:
+    name: IaC Scan
+    needs: job1
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ github.workspace }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Run Terrascan
+        id: terrascan
+        uses: accurics/terrascan-action@v1
+        with:
+          iac_type: 'terraform'
+          iac_version: 'v14'
+          policy_type: 'aws'
+          only_warn: true
+          iac_dir: terraform/aws
