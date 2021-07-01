@@ -56,8 +56,6 @@ jobs:
         id: terrascan
         uses: accurics/terrascan-action@v1
         with:
-          iac_type: 'terraform'
-          iac_version: 'v14'
-          policy_type: 'aws'
+          iac_type: 'k8s'
           only_warn: true
-          iac_dir: terraform/aws
+          iac_dir: K8s/
