@@ -15,7 +15,7 @@ spec:
         app: hello-api
     spec:
       containers:
-      - image: celagus/hello-api
+      - image: celagus/hello-world
         name: hello-api
         securityContext:
           allowPrivilegeEscalation: false
